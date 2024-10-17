@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT name="SexSynth" companyName="Bojo Corp" version="6.9.420" userNotes="Multi-out synth audio plugin."
+              companyWebsite="http://juce.com" projectType="audioplug" pluginAUIsSandboxSafe="1"
+              pluginManufacturer="Bojo Corp" pluginFormats="buildVST3,buildAU,buildStandalone"
+              useAppConfig="0" addUsingNamespaceToJuceHeader="1" id="ucKQMl"
+              pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
+              jucerFormatVersion="1">
+  <MAINGROUP id="m9Jw1G" name="SexSynth">
+    <GROUP id="{769FB46D-2018-4A7B-359A-2DFD14941BFD}" name="Source">
+      <FILE id="gIjjZD" name="CustomAudioVisualiserComponent.cpp" compile="1"
+            resource="0" file="Source/CustomAudioVisualiserComponent.cpp"/>
+      <FILE id="odXKAr" name="CustomAudioVisualiserComponent.h" compile="0"
+            resource="0" file="Source/CustomAudioVisualiserComponent.h"/>
+      <FILE id="Ors0ph" name="Cutoff.cpp" compile="1" resource="0" file="Source/Cutoff.cpp"/>
+      <FILE id="fmymdW" name="Cutoff.h" compile="0" resource="0" file="Source/Cutoff.h"/>
+      <FILE id="ym0TZf" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+      <FILE id="nZXnTj" name="MultiOutSynthTutorial.h" compile="0" resource="0"
+            file="Source/MultiOutSynthTutorial.h"/>
+      <FILE id="a5FsDi" name="SynthEditor.h" compile="0" resource="0" file="Source/SynthEditor.h"/>
+      <FILE id="vpx7Q8" name="WaveformDisplay.cpp" compile="1" resource="0"
+            file="Source/WaveformDisplay.cpp"/>
+      <FILE id="KohJp2" name="WaveformDisplay.h" compile="0" resource="0"
+            file="Source/WaveformDisplay.h"/>
+    </GROUP>
+    <FILE id="Rt8JEj" name="squat.jpg" compile="0" resource="1" file="Source/squat.jpg"/>
+  </MAINGROUP>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"
+            useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="SexSynth"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="MultiOutSynthTutorial"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path=""/>
+        <MODULEPATH id="juce_audio_devices" path=""/>
+        <MODULEPATH id="juce_audio_formats" path=""/>
+        <MODULEPATH id="juce_audio_plugin_client" path=""/>
+        <MODULEPATH id="juce_audio_processors" path=""/>
+        <MODULEPATH id="juce_audio_utils" path=""/>
+        <MODULEPATH id="juce_core" path=""/>
+        <MODULEPATH id="juce_data_structures" path=""/>
+        <MODULEPATH id="juce_events" path=""/>
+        <MODULEPATH id="juce_graphics" path=""/>
+        <MODULEPATH id="juce_gui_basics" path=""/>
+        <MODULEPATH id="juce_gui_extra" path=""/>
+        <MODULEPATH id="juce_dsp" path="../../JUCE/modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+    <VS2019 targetFolder="Builds/VisualStudio2019">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="MultiOutSynthTutorial"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="MultiOutSynthTutorial"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path=""/>
+        <MODULEPATH id="juce_audio_devices" path=""/>
+        <MODULEPATH id="juce_audio_formats" path=""/>
+        <MODULEPATH id="juce_audio_plugin_client" path=""/>
+        <MODULEPATH id="juce_audio_processors" path=""/>
+        <MODULEPATH id="juce_audio_utils" path=""/>
+        <MODULEPATH id="juce_core" path=""/>
+        <MODULEPATH id="juce_data_structures" path=""/>
+        <MODULEPATH id="juce_events" path=""/>
+        <MODULEPATH id="juce_graphics" path=""/>
+        <MODULEPATH id="juce_gui_basics" path=""/>
+        <MODULEPATH id="juce_gui_extra" path=""/>
+        <MODULEPATH id="juce_dsp" path="../../JUCE/modules"/>
+      </MODULEPATHS>
+    </VS2019>
+    <LINUX_MAKE targetFolder="Builds/LinuxMakefile">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="MultiOutSynthTutorial"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="MultiOutSynthTutorial"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path=""/>
+        <MODULEPATH id="juce_audio_devices" path=""/>
+        <MODULEPATH id="juce_audio_formats" path=""/>
+        <MODULEPATH id="juce_audio_plugin_client" path=""/>
+        <MODULEPATH id="juce_audio_processors" path=""/>
+        <MODULEPATH id="juce_audio_utils" path=""/>
+        <MODULEPATH id="juce_core" path=""/>
+        <MODULEPATH id="juce_data_structures" path=""/>
+        <MODULEPATH id="juce_events" path=""/>
+        <MODULEPATH id="juce_graphics" path=""/>
+        <MODULEPATH id="juce_gui_basics" path=""/>
+        <MODULEPATH id="juce_gui_extra" path=""/>
+        <MODULEPATH id="juce_dsp" path="../../JUCE/modules"/>
+      </MODULEPATHS>
+    </LINUX_MAKE>
+  </EXPORTFORMATS>
+  <JUCEOPTIONS JUCE_VST3_CAN_REPLACE_VST2="0"/>
+</JUCERPROJECT>

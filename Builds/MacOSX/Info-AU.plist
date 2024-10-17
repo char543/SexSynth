@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist>
+  <dict>
+    <key>CFBundleExecutable</key>
+    <string>${EXECUTABLE_NAME}</string>
+    <key>CFBundleIconFile</key>
+    <string></string>
+    <key>CFBundleIdentifier</key>
+    <string>com.BojoCorp.SexSynth</string>
+    <key>CFBundleName</key>
+    <string>SexSynth</string>
+    <key>CFBundleDisplayName</key>
+    <string>SexSynth</string>
+    <key>CFBundlePackageType</key>
+    <string>BNDL</string>
+    <key>CFBundleSignature</key>
+    <string>????</string>
+    <key>CFBundleShortVersionString</key>
+    <string>6.9.420</string>
+    <key>CFBundleVersion</key>
+    <string>6.9.420</string>
+    <key>NSHumanReadableCopyright</key>
+    <string></string>
+    <key>NSHighResolutionCapable</key>
+    <true/>
+    <key>AudioComponents</key>
+    <array>
+      <dict>
+        <key>name</key>
+        <string>Bojo Corp: SexSynth</string>
+        <key>description</key>
+        <string>SexSynth</string>
+        <key>factoryFunction</key>
+        <string>SexSynthAUFactory</string>
+        <key>manufacturer</key>
+        <string>Manu</string>
+        <key>type</key>
+        <string>aumu</string>
+        <key>subtype</key>
+        <string>Uckq</string>
+        <key>version</key>
+        <integer>395940</integer>
+        <key>sandboxSafe</key>
+        <true/>
+      </dict>
+    </array>
+  </dict>
+</plist>

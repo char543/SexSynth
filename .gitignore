@@ -1,0 +1,11 @@
+# Ignore the JUCE Library Code
+JuceLibraryCode/
+
+# Mac OS specific
+.DS_Store
+
+# Windows specific
+Thumbs.db
+
+# Ignore lib.a as it's too large
+Builds/MacOSX/build/Debug/libSexSynth.a

@@ -1,0 +1,60 @@
+{
+  "Name": "SexSynth",
+  "Version": "6.9.420",
+  "Factory Info": {
+    "Vendor": "Bojo Corp",
+    "URL": "http://juce.com",
+    "E-Mail": "",
+    "Flags": {
+      "Unicode": true,
+      "Classes Discardable": false,
+      "Component Non Discardable": false,
+    },
+  },
+  "Classes": [
+    {
+      "CID": "ABCDEF019182FAEB4D616E7555636B71",
+      "Category": "Audio Module Class",
+      "Name": "SexSynth",
+      "Vendor": "Bojo Corp",
+      "Version": "6.9.420",
+      "SDKVersion": "VST 3.7.12",
+      "Sub Categories": [
+        "Instrument",
+        "Synth",
+      ],
+      "Class Flags": 2,
+      "Cardinality": 2147483647,
+      "Snapshots": [
+      ],
+    },
+    {
+      "CID": "ABCDEF011234ABCD4D616E7555636B71",
+      "Category": "Component Controller Class",
+      "Name": "SexSynth",
+      "Vendor": "Bojo Corp",
+      "Version": "6.9.420",
+      "SDKVersion": "VST 3.7.12",
+      "Sub Categories": [
+        "Instrument",
+        "Synth",
+      ],
+      "Class Flags": 2,
+      "Cardinality": 2147483647,
+      "Snapshots": [
+      ],
+    },
+    {
+      "CID": "ABCDEF01C0DEF00D4D616E7555636B71",
+      "Category": "Plugin Compatibility Class",
+      "Name": "SexSynth",
+      "Vendor": "Bojo Corp",
+      "Version": "6.9.420",
+      "SDKVersion": "VST 3.7.12",
+      "Class Flags": 0,
+      "Cardinality": 2147483647,
+      "Snapshots": [
+      ],
+    },
+  ],
+}
