@@ -29,7 +29,7 @@ public:
         initializeSliders();
         initializeComboBox();
         initializeWaveformDisplay();
-        startTimer(100);
+        startTimer(10);
 
         // Set the size of the editor window
         setSize(900, 700);
@@ -37,9 +37,10 @@ public:
 
     ~SynthEditor() override {}
     
+    // Update the waveform display with latest audio buffer data
     void timerCallback() override
     {
-        waveformDisplay.setWaveform(processor.getWaveformData());
+        waveformDisplay.setWaveform(processor.getCurrentWaveformData());
     }
 
     void paint(juce::Graphics& g) override
@@ -269,7 +270,7 @@ private:
     void initializeWaveformDisplay()
     {
         addAndMakeVisible(waveformDisplay);
-        waveformDisplay.setWaveform(processor.getWaveformData()); // Assuming this method exists
+        waveformDisplay.setWaveform(processor.getCurrentWaveformData());
         waveformDisplay.setWaveformColor(juce::Colours::green);
     }
 
