@@ -29,7 +29,31 @@ public:
         initializeSliders();
         initializeComboBox();
         initializeWaveformDisplay();
+        // timer to update waveform
         startTimer(10);
+        
+        addAndMakeVisible(zoomInButton);
+        addAndMakeVisible(zoomOutButton);
+
+        // Add update interval slider
+        addAndMakeVisible(updateIntervalSlider);
+        
+        // Set button click handlers
+        zoomInButton.onClick = [this]() { waveformDisplay.zoomIn(); };
+        zoomOutButton.onClick = [this]() { waveformDisplay.zoomOut(); };
+
+
+        // Configure the update interval slider (range from 50ms to 1000ms)
+        updateIntervalSlider.setRange(1, 1000, 10);
+        updateIntervalSlider.setValue(100); // Default value 100ms
+        updateIntervalSlider.onValueChange = [this]()
+        {
+            setUpdateInterval(static_cast<int>(updateIntervalSlider.getValue()));
+        };
+
+        // Start the timer with the default update interval
+        startTimer(updateIntervalSlider.getValue());
+        
 
         // Set the size of the editor window
         setSize(900, 700);
@@ -37,10 +61,17 @@ public:
 
     ~SynthEditor() override {}
     
-    // Update the waveform display with latest audio buffer data
     void timerCallback() override
     {
-        waveformDisplay.setWaveform(processor.getCurrentWaveformData());
+        // Fetch the latest waveform data from your audio processor
+        auto waveformData = processor.getCurrentWaveformData();
+        waveformDisplay.setWaveform(waveformData);
+    }
+
+    void setUpdateInterval(int intervalMs)
+    {
+        stopTimer();  // Stop the current timer
+        startTimer(intervalMs);  // Start a new timer with the new interval
     }
 
     void paint(juce::Graphics& g) override
@@ -96,6 +127,14 @@ public:
         //cutoff slider
         cutoffSlider.setBounds(450, 50, 150, 50); // Position and size of the cutoff slider
         cutoffLabel.setBounds(450, 30, 100, 20);  // Label above the slider
+        
+        // Position the zoom buttons
+        zoomInButton.setBounds(420, 300, 100, 30);  // Adjust the position as needed
+        zoomOutButton.setBounds(530, 300, 100, 30); // Adjust the position as needed
+
+        // Position the update interval slider
+        updateIntervalSlider.setBounds(420, 340, 210, 30);  // Adjust the position as needed
+
     }
 
     void sliderValueChanged(juce::Slider* slider) override
@@ -171,6 +210,10 @@ private:
     juce::Label cutoffLabel;
     
     juce::Image backgroundImage;
+    
+    juce::TextButton zoomInButton { "Zoom In" };   // Button to zoom in
+    juce::TextButton zoomOutButton { "Zoom Out" }; // Button to zoom out
+    juce::Slider updateIntervalSlider;  // Slider to control the update interval
 
     
     void initializeSliders()

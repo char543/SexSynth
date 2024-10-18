@@ -14,20 +14,36 @@
 #include <vector>
 #include <algorithm>
 
-// WaveformDisplay class to visualize the waveform
 class WaveformDisplay : public juce::Component
 {
 public:
+    WaveformDisplay() {}
+
+    // Set the waveform data (called from the editor)
     void setWaveform(const std::vector<float>& newWaveform)
     {
         waveform = newWaveform;
         normalizeWaveform();  // Normalize the waveform whenever it's set
-        repaint();
+        repaint();  // Request a redraw
     }
 
+    // Set the waveform color
     void setWaveformColor(const juce::Colour& newColor)
     {
         waveformColor = newColor;
+        repaint();
+    }
+
+    // Zoom controls
+    void zoomIn()
+    {
+        zoomLevel *= 1.2f; // Increase zoom level (show more detail)
+        repaint();
+    }
+
+    void zoomOut()
+    {
+        zoomLevel *= 0.8f; // Decrease zoom level (show more of the waveform)
         repaint();
     }
 
@@ -44,13 +60,20 @@ protected:
 
             juce::Path waveformPath;
 
-            // Iterate through waveform data
-            for (size_t i = 0; i < waveform.size(); ++i)
+            // Calculate the number of samples to show based on zoom level
+            const int numSamplesToShow = static_cast<int>(waveform.size() / zoomLevel);
+            const float sampleIncrement = static_cast<float>(waveform.size()) / numSamplesToShow;
+
+            // Iterate through the waveform data based on zoom level
+            for (int i = 0; i < numSamplesToShow; ++i)
             {
-                float x = static_cast<float>(i) / (waveform.size() - 1) * width;
+                const int sampleIndex = static_cast<int>(i * sampleIncrement);
+                const float sampleValue = waveform[sampleIndex];
+
+                float x = static_cast<float>(i) / numSamplesToShow * width;
 
                 // Map the Y-value to fit the full height of the component with padding
-                float y = ((1.0f - waveform[i]) * (height - topPadding - bottomPadding) * 0.5f) + topPadding;
+                float y = ((1.0f - sampleValue) * (height - topPadding - bottomPadding) * 0.5f) + topPadding;
 
                 if (i == 0)
                     waveformPath.startNewSubPath(x, y);
@@ -63,11 +86,15 @@ protected:
     }
 
 private:
-    std::vector<float> waveform;  // Holds the waveform data
+    std::vector<float> waveform;   // Holds the waveform data
     juce::Colour waveformColor = juce::Colours::white;  // Color of the waveform
+
+    float zoomLevel = 1.0f;        // Zoom level (initially set to 1.0, meaning no zoom)
+
     const float topPadding = 10.0f;    // Space above the waveform
     const float bottomPadding = 10.0f; // Space below the waveform
 
+    // Normalize the waveform to fit between -1.0 and 1.0
     void normalizeWaveform()
     {
         if (waveform.empty()) return;
@@ -89,4 +116,3 @@ private:
         }
     }
 };
-

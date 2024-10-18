@@ -286,10 +286,7 @@ public:
     }
 
     // Indicate that the processor has an editor
-    bool hasEditor() const override
-    {
-        return true;
-    }
+    bool hasEditor() const override{ return true; }
     
         void getStateInformation(juce::MemoryBlock& destData) override
         {
