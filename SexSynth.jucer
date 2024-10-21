@@ -8,6 +8,8 @@
               jucerFormatVersion="1">
   <MAINGROUP id="m9Jw1G" name="SexSynth">
     <GROUP id="{769FB46D-2018-4A7B-359A-2DFD14941BFD}" name="Source">
+      <FILE id="QJjCD5" name="ADSR.cpp" compile="1" resource="0" file="Source/ADSR.cpp"/>
+      <FILE id="l8nVZG" name="ADSR.h" compile="0" resource="0" file="Source/ADSR.h"/>
       <FILE id="gIjjZD" name="CustomAudioVisualiserComponent.cpp" compile="1"
             resource="0" file="Source/CustomAudioVisualiserComponent.cpp"/>
       <FILE id="odXKAr" name="CustomAudioVisualiserComponent.h" compile="0"
@@ -15,8 +17,7 @@
       <FILE id="Ors0ph" name="Cutoff.cpp" compile="1" resource="0" file="Source/Cutoff.cpp"/>
       <FILE id="fmymdW" name="Cutoff.h" compile="0" resource="0" file="Source/Cutoff.h"/>
       <FILE id="ym0TZf" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
-      <FILE id="nZXnTj" name="MultiOutSynthTutorial.h" compile="0" resource="0"
-            file="Source/MultiOutSynthTutorial.h"/>
+      <FILE id="nZXnTj" name="SexSynth.h" compile="0" resource="0" file="Source/SexSynth.h"/>
       <FILE id="a5FsDi" name="SynthEditor.h" compile="0" resource="0" file="Source/SynthEditor.h"/>
       <FILE id="vpx7Q8" name="WaveformDisplay.cpp" compile="1" resource="0"
             file="Source/WaveformDisplay.cpp"/>
@@ -45,7 +46,7 @@
     <XCODE_MAC targetFolder="Builds/MacOSX">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="SexSynth"/>
-        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="MultiOutSynthTutorial"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="SexSynth"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_audio_basics" path=""/>
@@ -65,7 +66,7 @@
     </XCODE_MAC>
     <VS2019 targetFolder="Builds/VisualStudio2019">
       <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="MultiOutSynthTutorial"/>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="SexSynth"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="MultiOutSynthTutorial"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
@@ -105,6 +106,27 @@
         <MODULEPATH id="juce_dsp" path="../../JUCE/modules"/>
       </MODULEPATHS>
     </LINUX_MAKE>
+    <VS2022 targetFolder="Builds/VisualStudio2022">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug"/>
+        <CONFIGURATION isDebug="0" name="Release"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="C:\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_devices" path="C:\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_formats" path="C:\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="C:\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_processors" path="C:\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_utils" path="C:\JUCE\modules"/>
+        <MODULEPATH id="juce_core" path="C:\JUCE\modules"/>
+        <MODULEPATH id="juce_data_structures" path="C:\JUCE\modules"/>
+        <MODULEPATH id="juce_dsp" path="C:\JUCE\modules"/>
+        <MODULEPATH id="juce_events" path="C:\JUCE\modules"/>
+        <MODULEPATH id="juce_graphics" path="C:\JUCE\modules"/>
+        <MODULEPATH id="juce_gui_basics" path="C:\JUCE\modules"/>
+        <MODULEPATH id="juce_gui_extra" path="C:\JUCE\modules"/>
+      </MODULEPATHS>
+    </VS2022>
   </EXPORTFORMATS>
   <JUCEOPTIONS JUCE_VST3_CAN_REPLACE_VST2="0"/>
 </JUCERPROJECT>

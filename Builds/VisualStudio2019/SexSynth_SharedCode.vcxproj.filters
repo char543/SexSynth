@@ -712,6 +712,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\ADSR.cpp">
+      <Filter>SexSynth\Source</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\CustomAudioVisualiserComponent.cpp">
       <Filter>SexSynth\Source</Filter>
     </ClCompile>
@@ -3678,13 +3681,16 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\ADSR.h">
+      <Filter>SexSynth\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\CustomAudioVisualiserComponent.h">
       <Filter>SexSynth\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Cutoff.h">
       <Filter>SexSynth\Source</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\MultiOutSynthTutorial.h">
+    <ClInclude Include="..\..\Source\SexSynth.h">
       <Filter>SexSynth\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\SynthEditor.h">

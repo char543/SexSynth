@@ -8,70 +8,60 @@
 
 #pragma once
 
-#include "MultiOutSynthTutorial.h"
+#include "SexSynth.h"
 #include <JuceHeader.h>
 #include "WaveformDisplay.h"
-//class MultiOutSynth;
 
 class SynthEditor : public juce::AudioProcessorEditor,
-                    public juce::Slider::Listener,
-                    public juce::ComboBox::Listener,
-                    private juce::Timer
+public juce::Slider::Listener,
+public juce::ComboBox::Listener,
+private juce::Timer
 {
 public:
     SynthEditor(MultiOutSynth& p)
-        : AudioProcessorEditor(&p), processor(p)
+    : AudioProcessorEditor(&p), processor(p)
     {
         // Load the background image (assuming "background.png" was added to Projucer)
         backgroundImage = juce::ImageCache::getFromMemory(BinaryData::squat_jpg, BinaryData::squat_jpgSize);
-                
+
         // Initialize UI components
         initializeSliders();
         initializeComboBox();
         initializeWaveformDisplay();
-        // timer to update waveform
-        startTimer(10);
-        
-        addAndMakeVisible(zoomInButton);
-        addAndMakeVisible(zoomOutButton);
 
         // Add update interval slider
         addAndMakeVisible(updateIntervalSlider);
-        
-        // Set button click handlers
-        zoomInButton.onClick = [this]() { waveformDisplay.zoomIn(); };
-        zoomOutButton.onClick = [this]() { waveformDisplay.zoomOut(); };
+        configureUpdateIntervalSlider();
 
+        // Add zoom slider
+        addAndMakeVisible(zoomSlider);
+        configureZoomSlider();
 
-        // Configure the update interval slider (range from 50ms to 1000ms)
-        updateIntervalSlider.setRange(1, 1000, 10);
-        updateIntervalSlider.setValue(100); // Default value 100ms
-        updateIntervalSlider.onValueChange = [this]()
-        {
-            setUpdateInterval(static_cast<int>(updateIntervalSlider.getValue()));
-        };
+        // Start the timer to update the waveform display
+        //
+        //i dont know what this should be, if it needs to be set lower to be able to go lower or if its just the default value
+        startTimer(1);
 
-        // Start the timer with the default update interval
-        startTimer(updateIntervalSlider.getValue());
-        
+        // then call this func
+        initializeADSRSliders();
 
         // Set the size of the editor window
         setSize(900, 700);
     }
 
     ~SynthEditor() override {}
-    
+
     void timerCallback() override
     {
         // Fetch the latest waveform data from your audio processor
         auto waveformData = processor.getCurrentWaveformData();
         waveformDisplay.setWaveform(waveformData);
-    }
 
-    void setUpdateInterval(int intervalMs)
-    {
-        stopTimer();  // Stop the current timer
-        startTimer(intervalMs);  // Start a new timer with the new interval
+        // Update ADSR sliders from processor values (in case they changed externally, for example from host automation etc.)
+        attackSlider.setValue(processor.getADSRParameter("attack"), juce::dontSendNotification);
+        decaySlider.setValue(processor.getADSRParameter("decay"), juce::dontSendNotification);
+        sustainSlider.setValue(processor.getADSRParameter("sustain"), juce::dontSendNotification);
+        releaseSlider.setValue(processor.getADSRParameter("release"), juce::dontSendNotification);
     }
 
     void paint(juce::Graphics& g) override
@@ -79,7 +69,8 @@ public:
         if (backgroundImage.isValid())
         {
             // Draw the background image to fill the entire editor
-//          g.drawImage(backgroundImage, getLocalBounds().toFloat());
+        //    g.drawImage(backgroundImage, getLocalBounds().toFloat());
+           // g.fillAll(juce::Colours::darkgrey);
         }
         else
         {
@@ -93,18 +84,17 @@ public:
         // setBounds : (x,y,width,height)
         // x pixels from left edge, y pixels from top
         // int's for width and height of component
-        
-        // ADSR sliders
+
+        // Set bounds for ADSR sliders
         attackSlider.setBounds(10, 30, 70, 200);
-        attackLabel.setBounds(10, 230, 70, 20);
-
         decaySlider.setBounds(100, 30, 70, 200);
-        decayLabel.setBounds(100, 230, 70, 20);
-
         sustainSlider.setBounds(190, 30, 70, 200);
-        sustainLabel.setBounds(190, 230, 70, 20);
-
         releaseSlider.setBounds(280, 30, 70, 200);
+
+        // Set bounds for labels
+        attackLabel.setBounds(10, 230, 70, 20);
+        decayLabel.setBounds(100, 230, 70, 20);
+        sustainLabel.setBounds(190, 230, 70, 20);
         releaseLabel.setBounds(280, 230, 70, 20);
 
         // Waveform selector and label
@@ -114,27 +104,24 @@ public:
         // Adjust the waveform display size
         waveformDisplay.setBounds(10, 290, 400, 100);  // Reduce height
 
-        // Ensure the reese control is visible
-        reeseSlider.setBounds(10, 450, 400, 40);      // Adjust y-position for visibility
-        reeseLabel.setBounds(10, 400, 120, 20);       // Label for the reese slider
-        
-        reeseToggleButton.setBounds(10, 480, 100, 20); // Adjust the position as needed
-        
-        //volume knob
-        volumeKnob.setBounds(450, 400, 80, 80);  // Adjust the position and size of the knob
-        volumeLabel.setBounds(450, 480, 80, 20); // Position the label under the knob
+        // Set bounds for reese controls
+        reeseSlider.setBounds(10, 450, 400, 40);
+        reeseLabel.setBounds(10, 400, 120, 20);
+        reeseToggleButton.setBounds(10, 480, 100, 20);
 
-        //cutoff slider
-        cutoffSlider.setBounds(450, 50, 150, 50); // Position and size of the cutoff slider
-        cutoffLabel.setBounds(450, 30, 100, 20);  // Label above the slider
-        
-        // Position the zoom buttons
-        zoomInButton.setBounds(420, 300, 100, 30);  // Adjust the position as needed
-        zoomOutButton.setBounds(530, 300, 100, 30); // Adjust the position as needed
+        // Volume knob
+        volumeKnob.setBounds(450, 400, 80, 80);
+        volumeLabel.setBounds(450, 480, 80, 20);
+
+        // Cutoff slider
+        cutoffSlider.setBounds(450, 50, 150, 50);
+        cutoffLabel.setBounds(450, 30, 100, 20);
 
         // Position the update interval slider
-        updateIntervalSlider.setBounds(420, 340, 210, 30);  // Adjust the position as needed
+        updateIntervalSlider.setBounds(420, 340, 210, 30);
 
+        // Position the zoom slider
+        zoomSlider.setBounds(420, 300, 210, 30);  // Adjust the position and size as needed
     }
 
     void sliderValueChanged(juce::Slider* slider) override
@@ -150,9 +137,13 @@ public:
         else if (slider == &reeseSlider)
             processor.setReeseParameter(reeseSlider.getValue());
         else if (slider == &volumeKnob)
-            processor.setVolume(volumeKnob.getValue());  // Set the volume
+            processor.setVolume(volumeKnob.getValue());
         else if (slider == &cutoffSlider)
             processor.setCutoffFrequency(cutoffSlider.getValue());
+        else if (slider == &updateIntervalSlider)
+            setUpdateInterval(static_cast<int>(updateIntervalSlider.getValue()));  // For the update interval
+        else if (slider == &zoomSlider)
+            waveformDisplay.setZoomLevel(zoomSlider.getValue());  // For zooming the waveform
     }
 
     void comboBoxChanged(juce::ComboBox* comboBox) override
@@ -161,7 +152,7 @@ public:
         {
             int waveformType = waveformSelector.getSelectedId();
             processor.setWaveform(waveformType); // Update the waveform in the processor
-            
+
             switch (waveformType)
             {
                 case 1: currentWaveformLabel.setText("Current Waveform: Sine", juce::dontSendNotification); break;
@@ -180,6 +171,16 @@ public:
 private:
     MultiOutSynth& processor;
 
+    // Private method to initialize ADSR sliders with processor values
+    void initializeADSRSliders()
+    {
+        attackSlider.setValue(processor.getADSRParameter("attack"), juce::dontSendNotification);
+        decaySlider.setValue(processor.getADSRParameter("decay"), juce::dontSendNotification);
+        sustainSlider.setValue(processor.getADSRParameter("sustain"), juce::dontSendNotification);
+        releaseSlider.setValue(processor.getADSRParameter("release"), juce::dontSendNotification);
+    }
+
+
     // Declare UI components
     juce::Slider attackSlider;
     juce::Label attackLabel;
@@ -197,25 +198,23 @@ private:
 
     juce::Label currentWaveformLabel;
     WaveformDisplay waveformDisplay;
-    
+
     juce::Slider reeseSlider;
     juce::Label reeseLabel;
-    
+
     juce::ToggleButton reeseToggleButton;
-    
+
     juce::Slider volumeKnob;
     juce::Label volumeLabel;
-    
+
     juce::Slider cutoffSlider;
     juce::Label cutoffLabel;
-    
-    juce::Image backgroundImage;
-    
-    juce::TextButton zoomInButton { "Zoom In" };   // Button to zoom in
-    juce::TextButton zoomOutButton { "Zoom Out" }; // Button to zoom out
-    juce::Slider updateIntervalSlider;  // Slider to control the update interval
 
-    
+    juce::Image backgroundImage;
+
+    juce::Slider updateIntervalSlider;  // Slider to control the update interval
+    juce::Slider zoomSlider; // Slider for zooming waveform
+
     void initializeSliders()
     {
         addAndMakeVisible(attackSlider);
@@ -251,7 +250,7 @@ private:
         releaseSlider.addListener(this);
         releaseLabel.setText("Release", juce::dontSendNotification);
         addAndMakeVisible(releaseLabel);
-        
+
         addAndMakeVisible(reeseSlider);
         reeseSlider.setRange(20.0f, 20000.0f); // Range from 20 Hz to 20 kHz
         reeseSlider.setValue(2000.0f); // Default value
@@ -260,7 +259,7 @@ private:
         reeseSlider.addListener(this);
         reeseLabel.setText("Reese", juce::dontSendNotification);
         addAndMakeVisible(reeseLabel);
-        
+
         addAndMakeVisible(reeseToggleButton);
         reeseToggleButton.setButtonText("Reese On/Off");
         reeseToggleButton.onClick = [this]() { processor.setReeseEnabled(reeseToggleButton.getToggleState()); };
@@ -273,18 +272,40 @@ private:
         volumeKnob.addListener(this);     // Attach listener
         volumeLabel.setText("Volume", juce::dontSendNotification);  // Label for the knob
         addAndMakeVisible(volumeLabel);
-        
+
         addAndMakeVisible(cutoffSlider);
         cutoffSlider.setRange(1.0f, 20000.0f, 1.0f); // Cutoff frequency range in Hz
         cutoffSlider.setValue(20000.0f);    // Default cutoff value
         cutoffSlider.setSliderStyle(juce::Slider::LinearHorizontal);
         cutoffSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 80, 20);
         cutoffSlider.addListener(this);     // Attach listener to handle changes
-
         cutoffLabel.setText("Cutoff", juce::dontSendNotification);
         addAndMakeVisible(cutoffLabel);
     }
-        
+
+    void configureUpdateIntervalSlider()
+    {
+        updateIntervalSlider.setRange(1, 10000, 1);
+        updateIntervalSlider.setValue(100); // Default value 100ms
+        updateIntervalSlider.onValueChange = [this]()
+        {
+            setUpdateInterval(static_cast<int>(updateIntervalSlider.getValue()));
+        };
+        setUpdateInterval(updateIntervalSlider.getValue());
+    }
+
+    void configureZoomSlider()
+    {
+        zoomSlider.setRange(0.1, 50.0, 0.1); // Adjust range as needed
+        zoomSlider.setValue(1.0); // Default zoom level
+        zoomSlider.onValueChange = [this]()
+        {
+            // Set the zoom level based on the slider value
+            float sliderValue = zoomSlider.getValue();
+            // Set zoom level based on slider value
+            waveformDisplay.setZoomLevel(sliderValue);
+        };
+    }
 
     void initializeComboBox()
     {
@@ -317,5 +338,12 @@ private:
         waveformDisplay.setWaveformColor(juce::Colours::green);
     }
 
+    void setUpdateInterval(int intervalMs)
+    {
+        stopTimer();  // Stop the current timer
+        startTimer(intervalMs);  // Start a new timer with the new interval
+    }
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(SynthEditor)
 };
+

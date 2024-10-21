@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio Version 17
+
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SexSynth - Standalone Plugin", "SexSynth_StandalonePlugin.vcxproj", "{6703F93A-8704-C2C3-4E68-C3245D58855F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A4167958-C52B-2AC8-5C32-755C72F5ADF7} = {A4167958-C52B-2AC8-5C32-755C72F5ADF7}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SexSynth - VST3", "SexSynth_VST3.vcxproj", "{889C7184-EF8A-B44D-B0D0-AE43901A7526}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A4167958-C52B-2AC8-5C32-755C72F5ADF7} = {A4167958-C52B-2AC8-5C32-755C72F5ADF7}
+		{B6CFB6D3-A364-629C-E076-115A6CC38DB8} = {B6CFB6D3-A364-629C-E076-115A6CC38DB8}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SexSynth - Shared Code", "SexSynth_SharedCode.vcxproj", "{A4167958-C52B-2AC8-5C32-755C72F5ADF7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SexSynth - VST3 Manifest Helper", "SexSynth_VST3ManifestHelper.vcxproj", "{B6CFB6D3-A364-629C-E076-115A6CC38DB8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{889C7184-EF8A-B44D-B0D0-AE43901A7526}.Debug|x64.ActiveCfg = Debug|x64
+		{889C7184-EF8A-B44D-B0D0-AE43901A7526}.Debug|x64.Build.0 = Debug|x64
+		{889C7184-EF8A-B44D-B0D0-AE43901A7526}.Release|x64.ActiveCfg = Release|x64
+		{889C7184-EF8A-B44D-B0D0-AE43901A7526}.Release|x64.Build.0 = Release|x64
+		{6703F93A-8704-C2C3-4E68-C3245D58855F}.Debug|x64.ActiveCfg = Debug|x64
+		{6703F93A-8704-C2C3-4E68-C3245D58855F}.Debug|x64.Build.0 = Debug|x64
+		{6703F93A-8704-C2C3-4E68-C3245D58855F}.Release|x64.ActiveCfg = Release|x64
+		{6703F93A-8704-C2C3-4E68-C3245D58855F}.Release|x64.Build.0 = Release|x64
+		{A4167958-C52B-2AC8-5C32-755C72F5ADF7}.Debug|x64.ActiveCfg = Debug|x64
+		{A4167958-C52B-2AC8-5C32-755C72F5ADF7}.Debug|x64.Build.0 = Debug|x64
+		{A4167958-C52B-2AC8-5C32-755C72F5ADF7}.Release|x64.ActiveCfg = Release|x64
+		{A4167958-C52B-2AC8-5C32-755C72F5ADF7}.Release|x64.Build.0 = Release|x64
+		{B6CFB6D3-A364-629C-E076-115A6CC38DB8}.Debug|x64.ActiveCfg = Debug|x64
+		{B6CFB6D3-A364-629C-E076-115A6CC38DB8}.Debug|x64.Build.0 = Debug|x64
+		{B6CFB6D3-A364-629C-E076-115A6CC38DB8}.Release|x64.ActiveCfg = Release|x64
+		{B6CFB6D3-A364-629C-E076-115A6CC38DB8}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

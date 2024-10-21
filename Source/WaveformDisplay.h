@@ -1,12 +1,12 @@
 /*
-  ==============================================================================
+ ==============================================================================
 
-    WaveformDisplay.h
-    Created: 17 Oct 2024 3:50:42am
-    Author:  retrack
+ WaveformDisplay.h
+ Created: 17 Oct 2024 3:50:42am
+ Author:  retrack
 
-  ==============================================================================
-*/
+ ==============================================================================
+ */
 
 #pragma once
 
@@ -16,7 +16,7 @@
 
 class WaveformDisplay : public juce::Component
 {
-public:
+    public:
     WaveformDisplay() {}
 
     // Set the waveform data (called from the editor)
@@ -34,20 +34,14 @@ public:
         repaint();
     }
 
-    // Zoom controls
-    void zoomIn()
+    // Set the zoom level
+    void setZoomLevel(float newZoomLevel)
     {
-        zoomLevel *= 1.2f; // Increase zoom level (show more detail)
-        repaint();
+        zoomLevel = newZoomLevel;
+        repaint();  // Request a redraw whenever the zoom level changes
     }
 
-    void zoomOut()
-    {
-        zoomLevel *= 0.8f; // Decrease zoom level (show more of the waveform)
-        repaint();
-    }
-
-protected:
+    protected:
     void paint(juce::Graphics& g) override
     {
         g.fillAll(juce::Colours::darkgrey);  // Clear background
@@ -61,7 +55,8 @@ protected:
             juce::Path waveformPath;
 
             // Calculate the number of samples to show based on zoom level
-            const int numSamplesToShow = static_cast<int>(waveform.size() / zoomLevel);
+            const int numSamplesToShow = static_cast<int>(waveform.size() / (zoomLevel * 1.0f)); // Adjust logic
+
             const float sampleIncrement = static_cast<float>(waveform.size()) / numSamplesToShow;
 
             // Iterate through the waveform data based on zoom level
@@ -85,7 +80,7 @@ protected:
         }
     }
 
-private:
+    private:
     std::vector<float> waveform;   // Holds the waveform data
     juce::Colour waveformColor = juce::Colours::white;  // Color of the waveform
 

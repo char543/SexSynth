@@ -7,7 +7,7 @@
 */
 
 #include <JuceHeader.h>
-#include "MultiOutSynthTutorial.h"
+#include "SexSynth.h"
 
 //==============================================================================
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()

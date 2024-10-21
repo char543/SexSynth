@@ -40,6 +40,7 @@
 		384BB9F0B566FAC62FEAC944 /* AudioToolbox.framework */ = {isa = PBXBuildFile; fileRef = 26C2C86F487CE0F151AA3758; };
 		3EAEBD9F7A0CD3F41FA39E9B /* VST3 Manifest Helper */ = {isa = PBXBuildFile; fileRef = 7DEB89DAFB18EC0C967BBF80; };
 		44EE9DD85F6BE7291228FD4E /* VST3 */ = {isa = PBXBuildFile; fileRef = EEEBFABAB27B9A88E7461D1A; };
+		4B80D7ABAD0FC3D43C21875A /* ADSR.cpp */ = {isa = PBXBuildFile; fileRef = EE1BAEE6B98257EAD27E36F9; };
 		4DCA49CCD7A3AB52A786E619 /* include_juce_gui_basics.mm */ = {isa = PBXBuildFile; fileRef = 5A9BD29C1F2CBD4CB8697B64; };
 		5A3B8B101E17047C034D4A33 /* include_juce_audio_plugin_client_Standalone.cpp */ = {isa = PBXBuildFile; fileRef = D96939B02F657A0249B0D441; };
 		5BC35E0A7B5D2B4B18E0CA3F /* Standalone Plugin */ = {isa = PBXBuildFile; fileRef = 1216115135A614B651A4259E; };
@@ -104,6 +105,7 @@
 		2E77A1E3FC077359C5767592 /* include_juce_audio_processors_lv2_libs.cpp */ /* include_juce_audio_processors_lv2_libs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_juce_audio_processors_lv2_libs.cpp; path = ../../JuceLibraryCode/include_juce_audio_processors_lv2_libs.cpp; sourceTree = SOURCE_ROOT; };
 		3008B9C56D1E377BB9A2BC0F /* juce_gui_extra */ /* juce_gui_extra */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_gui_extra; path = "~/JUCE/modules/juce_gui_extra"; sourceTree = "<absolute>"; };
 		31D8343EC444FBB78E661360 /* JuceHeader.h */ /* JuceHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JuceHeader.h; path = ../../JuceLibraryCode/JuceHeader.h; sourceTree = SOURCE_ROOT; };
+		334B2250D706B31A683733B3 /* ADSR.h */ /* ADSR.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ADSR.h; path = ../../Source/ADSR.h; sourceTree = SOURCE_ROOT; };
 		361AC0AAD0904DCC263ACE4E /* Security.framework */ /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		3B3EAFD260309099BC1A72F2 /* CoreAudio.framework */ /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		42123EC9F6135A17BAABDF27 /* include_juce_audio_plugin_client_ARA.cpp */ /* include_juce_audio_plugin_client_ARA.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_juce_audio_plugin_client_ARA.cpp; path = ../../JuceLibraryCode/include_juce_audio_plugin_client_ARA.cpp; sourceTree = SOURCE_ROOT; };
@@ -134,6 +136,7 @@
 		A6F0FC1207EB11E9659A8DE0 /* CoreAudioKit.framework */ /* CoreAudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudioKit.framework; path = System/Library/Frameworks/CoreAudioKit.framework; sourceTree = SDKROOT; };
 		A83B4ED5E244E1018A14E131 /* Info-Standalone_Plugin.plist */ /* Info-Standalone_Plugin.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-Standalone_Plugin.plist"; path = "Info-Standalone_Plugin.plist"; sourceTree = SOURCE_ROOT; };
 		AAD55D19FCD0D799BAC950B0 /* WaveformDisplay.h */ /* WaveformDisplay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = WaveformDisplay.h; path = ../../Source/WaveformDisplay.h; sourceTree = SOURCE_ROOT; };
+		ABAF838AE1346147965F3290 /* SexSynth.h */ /* SexSynth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SexSynth.h; path = ../../Source/SexSynth.h; sourceTree = SOURCE_ROOT; };
 		AD4E2EAABE78B672C868153E /* include_juce_audio_basics.mm */ /* include_juce_audio_basics.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_audio_basics.mm; path = ../../JuceLibraryCode/include_juce_audio_basics.mm; sourceTree = SOURCE_ROOT; };
 		B089F6F076FFC6212B4EE98E /* Cocoa.framework */ /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		B0A6810E2260961173F7D16A /* Main.cpp */ /* Main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Main.cpp; path = ../../Source/Main.cpp; sourceTree = SOURCE_ROOT; };
@@ -145,11 +148,11 @@
 		D96939B02F657A0249B0D441 /* include_juce_audio_plugin_client_Standalone.cpp */ /* include_juce_audio_plugin_client_Standalone.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_juce_audio_plugin_client_Standalone.cpp; path = ../../JuceLibraryCode/include_juce_audio_plugin_client_Standalone.cpp; sourceTree = SOURCE_ROOT; };
 		E156DD1F2F59259BE7AC4F3B /* Info-AU.plist */ /* Info-AU.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-AU.plist"; path = "Info-AU.plist"; sourceTree = SOURCE_ROOT; };
 		ED7807FCE6DE3AB044CD9058 /* juce_dsp */ /* juce_dsp */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_dsp; path = "~/JUCE/modules/juce_dsp"; sourceTree = "<absolute>"; };
+		EE1BAEE6B98257EAD27E36F9 /* ADSR.cpp */ /* ADSR.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ADSR.cpp; path = ../../Source/ADSR.cpp; sourceTree = SOURCE_ROOT; };
 		EEEBFABAB27B9A88E7461D1A /* VST3 */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SexSynth.vst3; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3B93EC701FE0F9CA4EC2436 /* IOKit.framework */ /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		F41CFEF5B9D06555AA9DEB2B /* include_juce_audio_plugin_client_VST3.mm */ /* include_juce_audio_plugin_client_VST3.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_audio_plugin_client_VST3.mm; path = ../../JuceLibraryCode/include_juce_audio_plugin_client_VST3.mm; sourceTree = SOURCE_ROOT; };
 		F7EED5106F92A35C1A0DA463 /* juce_audio_devices */ /* juce_audio_devices */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_audio_devices; path = "~/JUCE/modules/juce_audio_devices"; sourceTree = "<absolute>"; };
-		F96B0D1BAECA30106A028018 /* MultiOutSynthTutorial.h */ /* MultiOutSynthTutorial.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MultiOutSynthTutorial.h; path = ../../Source/MultiOutSynthTutorial.h; sourceTree = SOURCE_ROOT; };
 		FDEC3485F2D4C4CAF217BAC1 /* juce_audio_processors */ /* juce_audio_processors */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_audio_processors; path = "~/JUCE/modules/juce_audio_processors"; sourceTree = "<absolute>"; };
 		FDF1B478A38E83AC43A942AA /* BinaryData.h */ /* BinaryData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BinaryData.h; path = ../../JuceLibraryCode/BinaryData.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -358,12 +361,14 @@
 		E9119620717323AF3E2DCAE4 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				EE1BAEE6B98257EAD27E36F9,
+				334B2250D706B31A683733B3,
 				1FFE002E0BDB5D105D76FC8F,
 				72B1CDBB7E254343D2A25733,
 				77A73BA0E6B6CA0AEE2CA090,
 				1B462B9676A251D3DC093A3B,
 				B0A6810E2260961173F7D16A,
-				F96B0D1BAECA30106A028018,
+				ABAF838AE1346147965F3290,
 				140D5FB14D547D831A6EF36F,
 				9472F7597302F56070B637F0,
 				AAD55D19FCD0D799BAC950B0,
@@ -730,6 +735,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B80D7ABAD0FC3D43C21875A,
 				C26F4A20CD84DEE1184385BE,
 				34C74C21A346B8BCB2E5FCB7,
 				24D40EB245D2F21073FD1CE9,
@@ -906,7 +912,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_HEADER_SEARCH_PATHS = "$(HOME)/JUCE/modules/juce_audio_processors/format_types/VST3_SDK $(SRCROOT)/../../JuceLibraryCode $(HOME)/JUCE/modules $(HOME)/JUCE/modules/juce_audio_plugin_client/AU";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BojoCorp.SexSynth;
-				PRODUCT_NAME = "MultiOutSynthTutorial";
+				PRODUCT_NAME = "SexSynth";
 				SKIP_INSTALL = YES;
 				USE_HEADERMAP = NO;
 				VALID_ARCHS = "i386 x86_64 arm64 arm64e";
@@ -1069,9 +1075,9 @@
 				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_HEADER_SEARCH_PATHS = "$(HOME)/JUCE/modules/juce_audio_processors/format_types/VST3_SDK $(SRCROOT)/../../JuceLibraryCode $(HOME)/JUCE/modules $(HOME)/JUCE/modules/juce_audio_plugin_client/AU";
-				OTHER_LDFLAGS = "-lMultiOutSynthTutorial";
+				OTHER_LDFLAGS = "-lSexSynth";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BojoCorp.SexSynth;
-				PRODUCT_NAME = "MultiOutSynthTutorial";
+				PRODUCT_NAME = "SexSynth";
 				USE_HEADERMAP = NO;
 				VALID_ARCHS = "i386 x86_64 arm64 arm64e";
 			};
@@ -1290,9 +1296,9 @@
 				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_HEADER_SEARCH_PATHS = "$(HOME)/JUCE/modules/juce_audio_processors/format_types/VST3_SDK $(SRCROOT)/../../JuceLibraryCode $(HOME)/JUCE/modules $(HOME)/JUCE/modules/juce_audio_plugin_client/AU";
-				OTHER_LDFLAGS = "-bundle -lMultiOutSynthTutorial";
+				OTHER_LDFLAGS = "-bundle -lSexSynth";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BojoCorp.SexSynth;
-				PRODUCT_NAME = "MultiOutSynthTutorial";
+				PRODUCT_NAME = "SexSynth";
 				USE_HEADERMAP = NO;
 				VALID_ARCHS = "i386 x86_64 arm64 arm64e";
 				WRAPPER_EXTENSION = vst3;
@@ -1507,10 +1513,10 @@
 				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_HEADER_SEARCH_PATHS = "$(HOME)/JUCE/modules/juce_audio_processors/format_types/VST3_SDK $(SRCROOT)/../../JuceLibraryCode $(HOME)/JUCE/modules $(HOME)/JUCE/modules/juce_audio_plugin_client/AU";
-				OTHER_LDFLAGS = "-bundle -lMultiOutSynthTutorial";
+				OTHER_LDFLAGS = "-bundle -lSexSynth";
 				OTHER_REZFLAGS = "-d ppc_$ppc -d i386_$i386 -d ppc64_$ppc64 -d x86_64_$x86_64 -d arm64_$arm64 -I /System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Versions/A/Headers -I \"$(DEVELOPER_DIR)/Extras/CoreAudio/AudioUnits/AUPublic/AUBase\" -I \"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/AudioUnit.framework/Headers\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BojoCorp.SexSynth;
-				PRODUCT_NAME = "MultiOutSynthTutorial";
+				PRODUCT_NAME = "SexSynth";
 				USE_HEADERMAP = NO;
 				VALID_ARCHS = "i386 x86_64 arm64 arm64e";
 				WRAPPER_EXTENSION = component;
@@ -1664,7 +1670,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_CODE_SIGN_FLAGS = --timestamp;
-				PRODUCT_NAME = "MultiOutSynthTutorial";
+				PRODUCT_NAME = "SexSynth";
 				SDKROOT = macosx;
 				WARNING_CFLAGS = "-Wreorder";
 				ZERO_LINK = NO;
